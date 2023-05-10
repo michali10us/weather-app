@@ -184,7 +184,7 @@ function searchCity(inputCity) {
     .then(getLocation)
     .catch(function (error) {
       if (error.response.status === 404) {
-        alert(`City '${inputCity}' not found. Please enter a valid city name.`);
+        alert(`City ${inputCity} not found. Please enter a valid city name.`);
       } else {
         alert(
           "An error occurred while fetching weather data. Please try again later."
