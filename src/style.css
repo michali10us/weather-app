@@ -94,3 +94,11 @@ h1 {
   /*   background-color: rgba(194, 220, 241, 0.913);
  */
 }
+
+small {
+  margin-left: 9%;
+}
+
+small a {
+  text-decoration: none;
+}
