@@ -14,9 +14,9 @@ function formatDate(date) {
   return `Update time: ${currentDay} ${hours}:${minutes}`;
 }
 
-let time = document.querySelector("#updateTime");
+/* let time = document.querySelector("#updateTime");
 let currentTime = new Date();
-time.innerHTML = formatDate(currentTime);
+time.innerHTML = formatDate(currentTime); */
 
 let currentTemp = document.querySelector("#temerature");
 let likeTemp = document.querySelector("#likeTemp");
@@ -31,8 +31,10 @@ function getLocation(response) {
   discription.innerHTML = response.data.condition.description;
   icon.setAttribute("src", `${response.data.condition.icon_url}`);
   console.log(response.data);
-  time.innerHTML = formatData();
   console.log(response.data.time);
+  let time = document.querySelector("#updateTime");
+  let currentTime = new Date();
+  time.innerHTML = formatDate(currentTime);
 }
 
 function searchCity(inputCity) {
