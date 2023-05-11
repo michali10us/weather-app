@@ -14,10 +14,6 @@ function formatDate(date) {
   return `Update time: ${currentDay} ${hours}:${minutes}`;
 }
 
-/* let time = document.querySelector("#updateTime");
-let currentTime = new Date();
-time.innerHTML = formatDate(currentTime); */
-
 let currentTemp = document.querySelector("#temerature");
 let likeTemp = document.querySelector("#likeTemp");
 let discription = document.querySelector("#discription");
