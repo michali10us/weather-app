@@ -78,6 +78,10 @@ h1 {
   text-decoration: none;
 }
 
+#discription {
+  text-transform: capitalize;
+}
+
 .card {
   margin: 10px 20px;
   border: 2px solid rgb(135, 135, 216);
