@@ -22,8 +22,10 @@ let icon = document.querySelector("#icon");
 function getLocation(response) {
   city.innerHTML = response.data.city;
   console.log(response.data.city);
-  currentTemp.innerHTML = Math.round(response.data.temperature.current);
-  likeTemp.innerHTML = Math.round(response.data.temperature.feels_like);
+  celsiusTemp = response.data.temperature.current;
+  currentTemp.innerHTML = Math.round(celsiusTemp);
+  celsiusFeel = response.data.temperature.feels_like;
+  likeTemp.innerHTML = Math.round(celsiusFeel);
   discription.innerHTML = response.data.condition.description;
   icon.setAttribute("src", `${response.data.condition.icon_url}`);
   console.log(response.data);
@@ -34,32 +36,26 @@ function getLocation(response) {
 }
 
 function searchCity(inputCity) {
-  /* let apiKey = "928e46c99ce0ca15a897fe42916c9ab3"; */
   let apiKey = "bd64o304c00cb1336373a57ft8094a9d";
-  /*   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${inputCity}&lat={lat}&lon={lon}&appid=${apiKey}&&units=metric`; */
   let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${inputCity}&key=${apiKey}&units=metric`;
-
   axios.get(apiUrl).then(getLocation);
 }
+
 function hendelSubmit(event) {
   event.preventDefault();
   let inputCity = document.querySelector("#inputPassword2").value;
   searchCity(inputCity);
 }
 
-/* let inputCity = document.querySelector("#inputPassword2");
- */ let city = document.querySelector("#cali");
+let city = document.querySelector("#cali");
 let form = document.querySelector("#searchForm");
 form.addEventListener("submit", hendelSubmit);
 
 function displayWeather(position) {
   let latitude = position.coords.latitude;
   let longitude = position.coords.longitude;
-  /*  let apiKey = "928e46c99ce0ca15a897fe42916c9ab3"; */
   let apiKey = "bd64o304c00cb1336373a57ft8094a9d";
-  /*   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
-   */ let apiUrl = `https://api.shecodes.io/weather/v1/current?lat=${latitude}&lon=${longitude}&key=${apiKey}&units=metric`;
-
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?lat=${latitude}&lon=${longitude}&key=${apiKey}&units=metric`;
   axios.get(apiUrl).then(getLocation);
 }
 
@@ -69,5 +65,27 @@ function getCurrentWeather() {
 
 let btnCurrentLocation = document.querySelector("#btnCurrentLocation");
 btnCurrentLocation.addEventListener("click", getCurrentWeather);
+
+function displayfahrenheit(event) {
+  event.preventDefault();
+  let currentTemp = document.querySelector("#temerature");
+  let fahrenheitTemp = (celsiusTemp * 9) / 5 + 32;
+  currentTemp.innerHTML = Math.round(fahrenheitTemp);
+}
+let fahrenheitElement = document.querySelector("#fahrenheit-link");
+fahrenheitElement.addEventListener("click", displayfahrenheit);
+
+function displayfahrenheitFell(event) {
+  event.preventDefault();
+  let likeTemp = document.querySelector("#likeTemp");
+  let fahrenheitFell = (celsiusFeel * 9) / 5 + 32;
+  likeTemp.innerHTML = Math.round(fahrenheitFell);
+}
+
+let fahrenheitFellLike = document.querySelector("#fahrenheitFell");
+fahrenheitFellLike.addEventListener("click", displayfahrenheitFell);
+
+let celsiusTemp = null;
+let celsiusFeel = null;
 
 searchCity("Sunnyvale");
