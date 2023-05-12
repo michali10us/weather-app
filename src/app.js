@@ -71,6 +71,8 @@ function displayfahrenheit(event) {
   let currentTemp = document.querySelector("#temerature");
   let fahrenheitTemp = (celsiusTemp * 9) / 5 + 32;
   currentTemp.innerHTML = Math.round(fahrenheitTemp);
+  celsiusElement.classList.remove("active");
+  fahrenheitElement.classList.add("active");
 }
 let fahrenheitElement = document.querySelector("#fahrenheit-link");
 fahrenheitElement.addEventListener("click", displayfahrenheit);
@@ -79,6 +81,8 @@ function displaycelsius(event) {
   event.preventDefault();
   let currentTemp = document.querySelector("#temerature");
   currentTemp.innerHTML = Math.round(celsiusTemp);
+  celsiusElement.classList.add("active");
+  fahrenheitElement.classList.remove("active");
 }
 
 let celsiusElement = document.querySelector("#celsius-link");
@@ -88,6 +92,8 @@ function displaycelsiusFeel(event) {
   event.preventDefault();
   let likeTemp = document.querySelector("#likeTemp");
   likeTemp.innerHTML = Math.round(celsiusFeel);
+  celsiusFeelLike.classList.add("active");
+  fahrenheitFellLike.classList.remove("active");
 }
 
 let celsiusFeelLike = document.querySelector("#celsiusFell");
@@ -98,6 +104,8 @@ function displayfahrenheitFell(event) {
   let likeTemp = document.querySelector("#likeTemp");
   let fahrenheitFell = (celsiusFeel * 9) / 5 + 32;
   likeTemp.innerHTML = Math.round(fahrenheitFell);
+  celsiusFeelLike.classList.remove("active");
+  fahrenheitFellLike.classList.add("active");
 }
 
 let fahrenheitFellLike = document.querySelector("#fahrenheitFell");
