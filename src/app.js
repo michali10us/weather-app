@@ -75,6 +75,24 @@ function displayfahrenheit(event) {
 let fahrenheitElement = document.querySelector("#fahrenheit-link");
 fahrenheitElement.addEventListener("click", displayfahrenheit);
 
+function displaycelsius(event) {
+  event.preventDefault();
+  let currentTemp = document.querySelector("#temerature");
+  currentTemp.innerHTML = Math.round(celsiusTemp);
+}
+
+let celsiusElement = document.querySelector("#celsius-link");
+celsiusElement.addEventListener("click", displaycelsius);
+
+function displaycelsiusFeel(event) {
+  event.preventDefault();
+  let likeTemp = document.querySelector("#likeTemp");
+  likeTemp.innerHTML = Math.round(celsiusFeel);
+}
+
+let celsiusFeelLike = document.querySelector("#celsiusFell");
+celsiusFeelLike.addEventListener("click", displaycelsiusFeel);
+
 function displayfahrenheitFell(event) {
   event.preventDefault();
   let likeTemp = document.querySelector("#likeTemp");
