@@ -89,10 +89,6 @@ function displayfahrenheitFell(event) {
   fahrenheitFellLike.classList.add("active");
 }
 
-/* let currentTemp = document.querySelector("#temerature"); */
-/* let likeTemp = document.querySelector("#likeTemp"); */
-/* let discription = document.querySelector("#discription"); */
-/* let icon = document.querySelector("#icon"); */
 let city = document.querySelector("#cali");
 let form = document.querySelector("#searchForm");
 
