@@ -14,22 +14,18 @@ function formatDate(date) {
   return `Update time: ${currentDay} ${hours}:${minutes}`;
 }
 
-let currentTemp = document.querySelector("#temerature");
-let likeTemp = document.querySelector("#likeTemp");
-let discription = document.querySelector("#discription");
-let icon = document.querySelector("#icon");
-
 function getLocation(response) {
   city.innerHTML = response.data.city;
-  console.log(response.data.city);
   celsiusTemp = response.data.temperature.current;
+  let currentTemp = document.querySelector("#temerature");
   currentTemp.innerHTML = Math.round(celsiusTemp);
   celsiusFeel = response.data.temperature.feels_like;
+  let likeTemp = document.querySelector("#likeTemp");
   likeTemp.innerHTML = Math.round(celsiusFeel);
+  let discription = document.querySelector("#discription");
   discription.innerHTML = response.data.condition.description;
+  let icon = document.querySelector("#icon");
   icon.setAttribute("src", `${response.data.condition.icon_url}`);
-  console.log(response.data);
-  console.log(response.data.time);
   let time = document.querySelector("#updateTime");
   let currentTime = new Date();
   time.innerHTML = formatDate(currentTime);
@@ -47,10 +43,6 @@ function hendelSubmit(event) {
   searchCity(inputCity);
 }
 
-let city = document.querySelector("#cali");
-let form = document.querySelector("#searchForm");
-form.addEventListener("submit", hendelSubmit);
-
 function displayWeather(position) {
   let latitude = position.coords.latitude;
   let longitude = position.coords.longitude;
@@ -63,9 +55,6 @@ function getCurrentWeather() {
   navigator.geolocation.getCurrentPosition(displayWeather);
 }
 
-let btnCurrentLocation = document.querySelector("#btnCurrentLocation");
-btnCurrentLocation.addEventListener("click", getCurrentWeather);
-
 function displayfahrenheit(event) {
   event.preventDefault();
   let currentTemp = document.querySelector("#temerature");
@@ -74,8 +63,6 @@ function displayfahrenheit(event) {
   celsiusElement.classList.remove("active");
   fahrenheitElement.classList.add("active");
 }
-let fahrenheitElement = document.querySelector("#fahrenheit-link");
-fahrenheitElement.addEventListener("click", displayfahrenheit);
 
 function displaycelsius(event) {
   event.preventDefault();
@@ -85,9 +72,6 @@ function displaycelsius(event) {
   fahrenheitElement.classList.remove("active");
 }
 
-let celsiusElement = document.querySelector("#celsius-link");
-celsiusElement.addEventListener("click", displaycelsius);
-
 function displaycelsiusFeel(event) {
   event.preventDefault();
   let likeTemp = document.querySelector("#likeTemp");
@@ -95,9 +79,6 @@ function displaycelsiusFeel(event) {
   celsiusFeelLike.classList.add("active");
   fahrenheitFellLike.classList.remove("active");
 }
-
-let celsiusFeelLike = document.querySelector("#celsiusFell");
-celsiusFeelLike.addEventListener("click", displaycelsiusFeel);
 
 function displayfahrenheitFell(event) {
   event.preventDefault();
@@ -107,6 +88,27 @@ function displayfahrenheitFell(event) {
   celsiusFeelLike.classList.remove("active");
   fahrenheitFellLike.classList.add("active");
 }
+
+/* let currentTemp = document.querySelector("#temerature"); */
+/* let likeTemp = document.querySelector("#likeTemp"); */
+/* let discription = document.querySelector("#discription"); */
+/* let icon = document.querySelector("#icon"); */
+let city = document.querySelector("#cali");
+let form = document.querySelector("#searchForm");
+
+form.addEventListener("submit", hendelSubmit);
+
+let btnCurrentLocation = document.querySelector("#btnCurrentLocation");
+btnCurrentLocation.addEventListener("click", getCurrentWeather);
+
+let fahrenheitElement = document.querySelector("#fahrenheit-link");
+fahrenheitElement.addEventListener("click", displayfahrenheit);
+
+let celsiusElement = document.querySelector("#celsius-link");
+celsiusElement.addEventListener("click", displaycelsius);
+
+let celsiusFeelLike = document.querySelector("#celsiusFell");
+celsiusFeelLike.addEventListener("click", displaycelsiusFeel);
 
 let fahrenheitFellLike = document.querySelector("#fahrenheitFell");
 fahrenheitFellLike.addEventListener("click", displayfahrenheitFell);
