@@ -14,6 +14,34 @@ function formatDate(date) {
   return `Update time: ${currentDay} ${hours}:${minutes}`;
 }
 
+function displayForcast() {
+  let forecastElement = document.querySelector("#forcast");
+  let forecastHtml = `<div class="row">`;
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri"];
+  days.forEach(function (day) {
+    forecastHtml =
+      forecastHtml +
+      `<div class="col-2">
+    <div class="p-2 weather-forecast-date"> ${day}</div>
+    <div class="p-2">
+      <img
+        src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/clear-sky-day.png"
+        id="icon"
+        alt=""
+        width="30px"
+        height="30px"
+      />
+    </div>
+    <div class="p-2 weather-forecast-temperature">
+      <span class="weather-forecast-temperature-max">25°C</span>
+      <span class="weather-forecast-temperature-min">20°C</span>
+    </div>
+</div>`;
+  });
+  forecastHtml = forecastHtml + `</div>`;
+  forecastElement.innerHTML = forecastHtml;
+}
+
 function getLocation(response) {
   city.innerHTML = response.data.city;
   celsiusTemp = response.data.temperature.current;
@@ -113,3 +141,4 @@ let celsiusTemp = null;
 let celsiusFeel = null;
 
 searchCity("Sunnyvale");
+displayForcast();
