@@ -14,7 +14,7 @@ function formatDate(date) {
   return `Update time: ${currentDay} ${hours}:${minutes}`;
 }
 
-function displayForcast() {
+function displayForcast(response) {
   let forecastElement = document.querySelector("#forcast");
   let forecastHtml = `<div class="row">`;
   let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri"];
@@ -40,6 +40,15 @@ function displayForcast() {
   });
   forecastHtml = forecastHtml + `</div>`;
   forecastElement.innerHTML = forecastHtml;
+  console.log(response.data.daily);
+}
+
+function getForcast(coordinates) {
+  let apiKey = "bd64o304c00cb1336373a57ft8094a9d";
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${coordinates.longitude}&lat=${coordinates.latitude}&key=${apiKey}&units=metric`;
+  console.log(coordinates);
+  console.log(apiUrl);
+  axios.get(apiUrl).then(displayForcast);
 }
 
 function getLocation(response) {
@@ -57,6 +66,7 @@ function getLocation(response) {
   let time = document.querySelector("#updateTime");
   let currentTime = new Date();
   time.innerHTML = formatDate(currentTime);
+  getForcast(response.data.coordinates);
 }
 
 function searchCity(inputCity) {
@@ -141,4 +151,3 @@ let celsiusTemp = null;
 let celsiusFeel = null;
 
 searchCity("Sunnyvale");
-displayForcast();
