@@ -14,18 +14,37 @@ function formatDate(date) {
   return `Update time: ${currentDay} ${hours}:${minutes}`;
 }
 
+function formatForceastDate(newstamp) {
+  let now = new Date(newstamp * 1000);
+  let day = now.getDay();
+
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  let dayElement = days[day];
+
+  return dayElement;
+}
+
 function displayForcast(response) {
   let forecastElement = document.querySelector("#forcast");
+  let forceast = response.data.daily;
   let forecastHtml = `<div class="row">`;
   let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri"];
-  days.forEach(function (day) {
-    forecastHtml =
-      forecastHtml +
-      `<div class="col-2">
-    <div class="p-2 weather-forecast-date"> ${day}</div>
+  forceast.forEach(function (forceastDay, index) {
+    console.log(forceastDay.condition.icon_url);
+    if (index < 6) {
+      forecastHtml =
+        forecastHtml +
+        `<div class="col-2">
+    <div class="p-2 weather-forecast-date"> ${formatForceastDate(
+      forceastDay.time
+    )}
+    </div>
     <div class="p-2">
-      <img
-        src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/clear-sky-day.png"
+  <img
+        src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${
+          forceastDay.condition.icon
+        }.png"
+
         id="icon"
         alt=""
         width="30px"
@@ -33,14 +52,20 @@ function displayForcast(response) {
       />
     </div>
     <div class="p-2 weather-forecast-temperature">
-      <span class="weather-forecast-temperature-max">25°C</span>
-      <span class="weather-forecast-temperature-min">20°C</span>
+      <span class="weather-forecast-temperature-max">${Math.round(
+        forceastDay.temperature.maximum
+      )}°C</span>
+      <span class="weather-forecast-temperature-min">${Math.round(
+        forceastDay.temperature.minimum
+      )}°C</span>
     </div>
 </div>`;
+    }
   });
+
   forecastHtml = forecastHtml + `</div>`;
+
   forecastElement.innerHTML = forecastHtml;
-  console.log(response.data.daily);
 }
 
 function getForcast(coordinates) {

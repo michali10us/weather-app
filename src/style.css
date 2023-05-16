@@ -131,3 +131,11 @@ small a {
   text-decoration: none;
   color: rgb(135, 135, 216);
 }
+
+.weather-forecast-temperature-min {
+  color: #70757a;
+}
+
+.weather-forecast-temperature {
+  font-size: 14px;
+}
