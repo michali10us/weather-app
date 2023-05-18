@@ -98,6 +98,10 @@ function hendelSubmit(event) {
   event.preventDefault();
   let inputCity = document.querySelector("#inputPassword2").value;
   searchCity(inputCity);
+  celsiusElement.classList.add("active");
+  fahrenheitElement.classList.remove("active");
+  celsiusFeelLike.classList.add("active");
+  fahrenheitFellLike.classList.remove("active");
 }
 
 function displayWeather(position) {
